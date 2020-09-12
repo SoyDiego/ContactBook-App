@@ -7,7 +7,7 @@ const NewContact = ({ handleSubmit }) => {
 	const phone = useRef();
 
 	return (
-		<div className="col-md-6 text-center">
+		<>
 			<form
 				onSubmit={(e) =>
 					handleSubmit(
@@ -39,10 +39,10 @@ const NewContact = ({ handleSubmit }) => {
 					ref={phone}
 					placeholder="Your Phone"
 				/>
-				<button className="btn btn-primary">Add new Contact</button>
+				<button className="btn btn-success">Add new Contact</button>
 			</form>
 			<hr />
-		</div>
+		</>
 	);
 };
 
