@@ -9,7 +9,7 @@ const Contact = ({ contact, handleUpdate, handleDelete }) => {
 	const [editable, setEditable] = useState(false);
 	let firstNameEdit = editable ? (
 		<input
-			className="form-control m-2"
+			className="form-control"
 			type="text"
 			ref={firstName}
 			defaultValue={contact.firstName}
@@ -19,7 +19,7 @@ const Contact = ({ contact, handleUpdate, handleDelete }) => {
 	);
 	let lastNameEdit = editable ? (
 		<input
-			className="form-control m-2"
+			className="form-control"
 			type="text"
 			ref={lastName}
 			defaultValue={contact.lastName}
@@ -30,7 +30,7 @@ const Contact = ({ contact, handleUpdate, handleDelete }) => {
 
 	let emailEdit = editable ? (
 		<input
-			className="form-control m-2"
+			className="form-control"
 			type="text"
 			ref={email}
 			defaultValue={contact.email}
@@ -41,10 +41,10 @@ const Contact = ({ contact, handleUpdate, handleDelete }) => {
 
 	let phoneEdit = editable ? (
 		<input
-			className="form-control m-2"
+			className="form-control"
 			type="text"
 			ref={phone}
-			defaultValue={contact.lastName}
+			defaultValue={contact.phone}
 		/>
 	) : (
 		contact.phone
@@ -78,17 +78,17 @@ const Contact = ({ contact, handleUpdate, handleDelete }) => {
 				} mb-3 mr-1`}
 				style={{ width: "18rem" }}>
 				<div className="card-header">
-					{editable ? "Edit Contact" : contact.id}
+					{editable ? "Edit Contact" : `#${contact.id}`}
 				</div>
 				<div className="card-body d-flex flex-column justify-content-center">
-					<h5 className="card-title">{firstNameEdit}</h5>
-					<h5 className="card-title">{lastNameEdit}</h5>
-					<h5 className="card-title">{emailEdit}</h5>
+					<p className="card-title">{firstNameEdit}</p>
+					<p className="card-title">{lastNameEdit}</p>
+					<p className="card-title">{emailEdit}</p>
 					<p className="card-text">{phoneEdit}</p>
 					<div>
 						<button
 							className="btn btn-warning mr-2"
-							onClick={() => handleEdit(contact)}>
+							onClick={() => handleEdit()}>
 							{!editable ? "Edit" : "Submit"}
 						</button>
 						<button

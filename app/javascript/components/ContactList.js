@@ -22,7 +22,7 @@ const ContactList = ({
 	}, []);
 
 	return (
-		<>
+		<div className="d-flex flex-wrap justify-content-center text-center">
 			{contacts && contacts.length > 0 ? (
 				contacts.map((contact) => (
 					<Contact
@@ -35,10 +35,10 @@ const ContactList = ({
 				))
 			) : (
 				<p>
-					ContactList is empty 😔. <strong>Add a new contact</strong>
+					ContactBook is empty 😔. <strong>Add a new contact</strong>
 				</p>
 			)}
-		</>
+		</div>
 	);
 };
 

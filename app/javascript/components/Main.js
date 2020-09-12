@@ -86,7 +86,7 @@ const Main = () => {
 	const handleUpdate = (contact) => {
 		try {
 			(async () => {
-				await fetch(`api/v1/contacts/${contact.id}`, {
+				const api = await fetch(`api/v1/contacts/${contact.id}`, {
 					method: "PUT",
 					headers: {
 						"Content-Type": "application/json",
@@ -96,10 +96,24 @@ const Main = () => {
 				let newContacts = contacts.map((iterateContact) =>
 					iterateContact.id === contact.id ? contact : iterateContact
 				);
-				setContacts(newContacts);
-			})();
+				const data = await api.json();
 
-			showMessage("success", "Updated successfully");
+				if (data.ok) {
+					setContacts(newContacts);
+					showMessage("success", "Updated successfully");
+				} else {
+					const errorValidations = [];
+					for (const key in data.errors) {
+						errorValidations.push(data.errors[key][0]);
+					}
+					showMessage(
+						"error",
+						errorValidations.map(
+							(errorValidation) => `${errorValidation} <br/>`
+						)
+					);
+				}
+			})();
 		} catch (error) {
 			showError();
 			console.log(error);
@@ -110,9 +124,11 @@ const Main = () => {
 		<div className="container-fluid mt-5">
 			<div className="row justify-content-center">
 				<div className="col-md-4 d-flex flex-column align-items-center justify-content-center text-center">
+					<h2>Add Contact</h2>
 					<NewContact handleSubmit={handleSubmit} />
 				</div>
-				<div className="col-md-8 d-flex flex-wrap justify-content-center text-center">
+				<div className="col-md-8 d-flex flex-column text-center">
+					<h2>ContactBook-App</h2>
 					<ContactList
 						contacts={contacts}
 						setContacts={setContacts}

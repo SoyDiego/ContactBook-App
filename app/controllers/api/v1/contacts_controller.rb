@@ -18,16 +18,16 @@ class Api::V1::ContactsController < ApplicationController
 
   def update
     contact = Contact.find(params[:id])
-    if contact.update_attributes(contact_params)
-      render json: contact, status: :created
+    if contact.update(contact_params)
+      render json: {contacts: contact, ok: true}, status: :created
     else
-      render json: {errors: contact.errors}, status: unprocessable_entity
+      render json: {errors: contact.errors, ok: false}, status: :unprocessable_entity
     end
   end
 
   private
 
   def contact_params
-    params.require(:contact).permit(:firstName, :lastName, :email, :phone)
+    params.require(:contact).permit(:id, :firstName, :lastName, :email, :phone)
   end
 end
