@@ -9,6 +9,7 @@ const Main = () => {
 
 	const handleSubmit = (e, firstName, lastName, email, phone) => {
 		e.preventDefault();
+		const resetForm = e.target;
 
 		const newContact = JSON.stringify({
 			contact: { firstName, lastName, email, phone },
@@ -26,16 +27,20 @@ const Main = () => {
 
 				if (data.ok) {
 					setContacts([...contacts, data.contacts]);
+					resetForm.reset();
 				} else {
-					// showMessage(
-					// 	"error",
-					// 	data.errors.name
-					// 		? data.errors.name[0]
-					// 		: data.errors.description[0]
-					// );
+					const errorValidations = [];
+					for (const key in data.errors) {
+						errorValidations.push(data.errors[key][0]);
+					}
+					showMessage(
+						"error",
+						errorValidations.map(
+							(errorValidation) => `${errorValidation} <br/>`
+						)
+					);
 				}
 			})();
-			e.target.reset();
 
 			showMessage("success", "Contact added successfully");
 		} catch (error) {

@@ -1,44 +1,49 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 const Contact = ({ contact, handleUpdate, handleDelete }) => {
+	const firstName = useRef();
+	const lastName = useRef();
+	const email = useRef();
+	const phone = useRef();
+
 	const [editable, setEditable] = useState(false);
-	let firstName = editable ? (
+	let firstNameEdit = editable ? (
 		<input
 			className="form-control m-2"
 			type="text"
-			ref={(input) => (firstName = input)}
+			ref={firstName}
 			defaultValue={contact.firstName}
 		/>
 	) : (
 		contact.firstName
 	);
-	let lastName = editable ? (
+	let lastNameEdit = editable ? (
 		<input
 			className="form-control m-2"
 			type="text"
-			ref={(input) => (lastName = input)}
+			ref={lastName}
 			defaultValue={contact.lastName}
 		/>
 	) : (
 		contact.lastName
 	);
 
-	let email = editable ? (
+	let emailEdit = editable ? (
 		<input
 			className="form-control m-2"
 			type="text"
-			ref={(input) => (email = input)}
+			ref={email}
 			defaultValue={contact.email}
 		/>
 	) : (
 		contact.email
 	);
 
-	let phone = editable ? (
+	let phoneEdit = editable ? (
 		<input
 			className="form-control m-2"
 			type="text"
-			ref={(input) => (phone = input)}
+			ref={phone}
 			defaultValue={contact.lastName}
 		/>
 	) : (
@@ -47,10 +52,10 @@ const Contact = ({ contact, handleUpdate, handleDelete }) => {
 
 	const handleEdit = () => {
 		if (editable) {
-			let editFirstName = firstName.value;
-			let editLastName = lastName.value;
-			let editEmail = email.value;
-			let editPhone = phone.value;
+			let editFirstName = firstName.current.value;
+			let editLastName = lastName.current.value;
+			let editEmail = email.current.value;
+			let editPhone = phone.current.value;
 			let id = contact.id;
 			let editContact = {
 				id,
@@ -76,10 +81,10 @@ const Contact = ({ contact, handleUpdate, handleDelete }) => {
 					{editable ? "Edit Contact" : contact.id}
 				</div>
 				<div className="card-body d-flex flex-column justify-content-center">
-					<h5 className="card-title">{firstName}</h5>
-					<h5 className="card-title">{lastName}</h5>
-					<h5 className="card-title">{email}</h5>
-					<p className="card-text">{phone}</p>
+					<h5 className="card-title">{firstNameEdit}</h5>
+					<h5 className="card-title">{lastNameEdit}</h5>
+					<h5 className="card-title">{emailEdit}</h5>
+					<p className="card-text">{phoneEdit}</p>
 					<div>
 						<button
 							className="btn btn-warning mr-2"
