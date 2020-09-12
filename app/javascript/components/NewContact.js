@@ -9,13 +9,13 @@ const NewContact = ({ handleSubmit }) => {
 	return (
 		<>
 			<form
-				onSubmit={(e) =>
-					handleSubmit(
+				onSubmit={async (e) =>
+					await handleSubmit(
 						e,
 						firstName.current.value,
-                        lastName.current.value,
-                        email.current.value,
-                        phone.current.value,
+						lastName.current.value,
+						email.current.value,
+						phone.current.value
 					)
 				}>
 				<input

@@ -7,7 +7,7 @@ import ContactList from "./ContactList";
 const Main = () => {
 	const [contacts, setContacts] = useState(null);
 
-	const handleSubmit = (e, firstName, lastName, email, phone) => {
+	const handleSubmit = async (e, firstName, lastName, email, phone) => {
 		e.preventDefault();
 		const resetForm = e.target;
 
@@ -15,42 +15,42 @@ const Main = () => {
 			contact: { firstName, lastName, email, phone },
 		});
 		try {
-			(async () => {
-				const api = await fetch("/api/v1/contacts.json", {
+			const api = await fetch(
+				"https://contactbook-app.herokuapp.com/api/v1/contacts.json",
+				{
 					method: "POST",
 					headers: {
 						"Content-Type": "application/json",
 					},
 					body: newContact,
-				});
-				const data = await api.json();
-
-				if (data.ok) {
-					setContacts([...contacts, data.contacts]);
-					resetForm.reset();
-				} else {
-					const errorValidations = [];
-					for (const key in data.errors) {
-						errorValidations.push(data.errors[key][0]);
-					}
-					showMessage(
-						"error",
-						errorValidations
-							.map((errorValidation) => errorValidation)
-							.join("<br/>")
-					);
 				}
-			})();
+			);
+			const data = await api.json();
 
-			showMessage("success", "Contact added successfully");
+			if (data.ok) {
+				setContacts([...contacts, data.contacts]);
+				resetForm.reset();
+				showMessage("success", "Contact added successfully");
+			} else {
+				const errorValidations = [];
+				for (const key in data.errors) {
+					errorValidations.push(data.errors[key][0]);
+				}
+				showMessage(
+					"error",
+					errorValidations
+						.map((errorValidation) => errorValidation)
+						.join("<br/>")
+				);
+			}
 		} catch (error) {
 			showError();
 			console.log(error);
 		}
 	};
 
-	const handleDelete = (id) => {
-		Swal.fire({
+	const handleDelete = async (id) => {
+		const result = await Swal.fire({
 			title: "Are you sure?",
 			text: "You won't be able to revert this!",
 			icon: "warning",
@@ -58,65 +58,69 @@ const Main = () => {
 			confirmButtonColor: "#3085d6",
 			cancelButtonColor: "#d33",
 			confirmButtonText: "Yes, delete it!",
-		}).then((result) => {
-			if (result.isConfirmed) {
-				try {
-					(async () => {
-						await fetch(`api/v1/contacts/${id}`, {
-							method: "DELETE",
-							headers: {
-								"Content-Type": "application/json",
-							},
-						});
-						const filteredContacts = contacts.filter(
-							(contact) => contact.id !== id
-						);
-						setContacts(filteredContacts);
-					})();
-
-					showMessage("success", "Deleted successfully");
-				} catch (error) {
-					showError();
-					console.log(error);
-				}
-			}
 		});
+		if (result.isConfirmed) {
+			try {
+				await fetch(
+					`https://contactbook-app.herokuapp.com/api/v1/contacts/${id}`,
+					{
+						method: "DELETE",
+						headers: {
+							"Content-Type": "application/json",
+						},
+					}
+				);
+				const filteredContacts = contacts.filter(
+					(contact) => contact.id !== id
+				);
+				setContacts(filteredContacts);
+
+				showMessage("success", "Deleted successfully");
+			} catch (error) {
+				showError();
+				console.log(error);
+			}
+		}
 	};
 
-	const handleUpdate = (contact) => {
+	const handleUpdate = async (contact) => {
 		try {
-			(async () => {
-				const api = await fetch(`api/v1/contacts/${contact.id}`, {
+			const api = await fetch(
+				`https://contactbook-app.herokuapp.com/api/v1/contacts/${contact.id}`,
+				{
 					method: "PUT",
 					headers: {
 						"Content-Type": "application/json",
 					},
 					body: JSON.stringify({ contact: contact }),
-				});
-				let newContacts = contacts.map((iterateContact) =>
-					iterateContact.id === contact.id ? contact : iterateContact
-				);
-				const data = await api.json();
-
-				if (data.ok) {
-					setContacts(newContacts);
-					showMessage("success", "Updated successfully");
-				} else {
-					const errorValidations = [];
-					for (const key in data.errors) {
-						errorValidations.push(data.errors[key][0]);
-					}
-					showMessage(
-						"error",
-						errorValidations
-							.map((errorValidation) => errorValidation)
-							.join("<br/>")
-					);
 				}
-			})();
+			);
+			let newContacts = contacts.map((iterateContact) =>
+				iterateContact.id === contact.id ? contact : iterateContact
+			);
+			const data = await api.json();
+
+			if (data.ok) {
+				setContacts(newContacts);
+				showMessage("success", "Updated successfully");
+				return true;
+			} else {
+				const errorValidations = [];
+				for (const key in data.errors) {
+					errorValidations.push(data.errors[key][0]);
+				}
+				showMessage(
+					"error",
+					errorValidations
+						.map((errorValidation) => errorValidation)
+						.join("<br/>")
+				);
+				return false;
+			}
 		} catch (error) {
 			showError();
 			console.log(error);
+			return false;
 		}
 	};
 

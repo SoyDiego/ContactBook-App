@@ -6,7 +6,6 @@ const ContactList = ({
 	setContacts,
 	handleUpdate,
 	handleDelete,
-	setEditable,
 }) => {
 	useEffect(() => {
 		try {
@@ -30,7 +29,6 @@ const ContactList = ({
 						contact={contact}
 						handleUpdate={handleUpdate}
 						handleDelete={handleDelete}
-						setEditable={setEditable}
 					/>
 				))
 			) : (

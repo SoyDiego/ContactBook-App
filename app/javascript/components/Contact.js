@@ -7,6 +7,7 @@ const Contact = ({ contact, handleUpdate, handleDelete }) => {
 	const phone = useRef();
 
 	const [editable, setEditable] = useState(false);
+
 	let firstNameEdit = editable ? (
 		<input
 			className="form-control"
@@ -50,7 +51,7 @@ const Contact = ({ contact, handleUpdate, handleDelete }) => {
 		contact.phone
 	);
 
-	const handleEdit = () => {
+	const handleEdit = async () => {
 		if (editable) {
 			let editFirstName = firstName.current.value;
 			let editLastName = lastName.current.value;
@@ -64,9 +65,14 @@ const Contact = ({ contact, handleUpdate, handleDelete }) => {
 				email: editEmail,
 				phone: editPhone,
 			};
-			handleUpdate(editContact);
-		}
 
+			const updated = await handleUpdate(editContact);
+
+			if (updated) {
+				setEditable(!editable);
+			}
+			return;
+		}
 		setEditable(!editable);
 	};
 
@@ -91,10 +97,15 @@ const Contact = ({ contact, handleUpdate, handleDelete }) => {
 							onClick={() => handleEdit()}>
 							{!editable ? "Edit" : "Submit"}
 						</button>
+
 						<button
 							className="btn btn-danger"
-							onClick={() => handleDelete(contact.id)}>
-							Delete
+							onClick={
+								editable
+									? () => setEditable(!editable)
+									: () => handleDelete(contact.id)
+							}>
+							{editable ? "Cancel" : "Delete"}
 						</button>
 					</div>
 				</div>
