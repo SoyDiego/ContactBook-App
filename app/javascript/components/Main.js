@@ -35,9 +35,9 @@ const Main = () => {
 					}
 					showMessage(
 						"error",
-						errorValidations.map(
-							(errorValidation) => `${errorValidation} <br/>`
-						)
+						errorValidations
+							.map((errorValidation) => errorValidation)
+							.join("<br/>")
 					);
 				}
 			})();
@@ -108,9 +108,9 @@ const Main = () => {
 					}
 					showMessage(
 						"error",
-						errorValidations.map(
-							(errorValidation) => `${errorValidation} <br/>`
-						)
+						errorValidations
+							.map((errorValidation) => errorValidation)
+							.join("<br/>")
 					);
 				}
 			})();

@@ -5,6 +5,3 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
-contacts = ['Diego', 'Juan', 'Carlos', 'Pedro']
-contacts.each{|contact| Contact.create(firstName: contact, lastName: "Doe", email: "test@testing.com", phone:"+123456789")}
