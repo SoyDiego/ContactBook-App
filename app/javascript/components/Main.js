@@ -19,7 +19,7 @@ const Main = () => {
 		});
 		try {
 			const api = await fetch(
-				"https://contactbook-app.herokuapp.com/api/v1/contacts.json",
+				"https://contactbook-app.herokuapp.com/api/v1/contacts",
 				{
 					method: "POST",
 					headers: {

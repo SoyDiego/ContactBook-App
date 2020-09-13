@@ -6,7 +6,7 @@ const ContactList = ({ contacts, setContacts, handleUpdate, handleDelete }) => {
 		try {
 			(async () => {
 				const api = await fetch(
-					"https://contactbook-app.herokuapp.com/api/v1/contacts.json"
+					"https://contactbook-app.herokuapp.com/api/v1/contacts"
 				);
 				const data = await api.json();
 
