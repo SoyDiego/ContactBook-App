@@ -1,4 +1,6 @@
 import React, { useRef } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser,faUserPlus, faAt, faPhone } from "@fortawesome/free-solid-svg-icons";
 
 const NewContact = ({ handleSubmit }) => {
 	const firstName = useRef();
@@ -18,28 +20,65 @@ const NewContact = ({ handleSubmit }) => {
 						phone.current.value
 					)
 				}>
-				<input
-					className="form-control mb-3"
-					ref={firstName}
-					placeholder="First Name"
-				/>
-				<input
-					className="form-control mb-3"
-					ref={lastName}
-					placeholder="Last Name"
-				/>
+				<div class="input-group mb-2 mr-sm-2">
+					<div class="input-group-prepend">
+						<div class="input-group-text">
+							<FontAwesomeIcon icon={faUser} />
+						</div>
+					</div>
+					<input
+						type="text"
+						class="form-control"
+						placeholder="First Name"
+						ref={firstName}
+					/>
+				</div>
 
-				<input
-					className="form-control mb-3"
-					ref={email}
-					placeholder="Your email @"
-				/>
-				<input
-					className="form-control mb-3"
-					ref={phone}
-					placeholder="Your Phone"
-				/>
-				<button className="btn btn-success">Add new Contact</button>
+				<div class="input-group mb-2 mr-sm-2">
+					<div class="input-group-prepend">
+						<div class="input-group-text">
+							<FontAwesomeIcon icon={faUser} />
+						</div>
+					</div>
+					<input
+						type="text"
+						class="form-control"
+						placeholder="Last Name"
+						ref={lastName}
+					/>
+				</div>
+
+				<div class="input-group mb-2 mr-sm-2">
+					<div class="input-group-prepend">
+						<div class="input-group-text">
+							<FontAwesomeIcon icon={faAt} />
+						</div>
+					</div>
+					<input
+						type="text"
+						class="form-control"
+						placeholder="Your Email"
+						ref={email}
+					/>
+				</div>
+
+				<div class="input-group mb-2 mr-sm-2">
+					<div class="input-group-prepend">
+						<div class="input-group-text">
+							<FontAwesomeIcon icon={faPhone} />
+						</div>
+					</div>
+					<input
+						type="text"
+						class="form-control"
+						placeholder="Your Phone"
+						ref={phone}
+					/>
+				</div>
+				<button className="btn btn-primary">
+					<FontAwesomeIcon className="mr-1" icon={faUserPlus} />
+					Add new Contact
+				</button>
 			</form>
 			<hr />
 		</>

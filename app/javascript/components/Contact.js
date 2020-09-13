@@ -1,4 +1,13 @@
 import React, { useState, useRef } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+	faUserEdit,
+	faTrash,
+	faTimesCircle,
+	faUser,
+	faAt,
+	faPhone,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Contact = ({ contact, handleUpdate, handleDelete }) => {
 	const firstName = useRef();
@@ -9,44 +18,72 @@ const Contact = ({ contact, handleUpdate, handleDelete }) => {
 	const [editable, setEditable] = useState(false);
 
 	let firstNameEdit = editable ? (
-		<input
-			className="form-control"
-			type="text"
-			ref={firstName}
-			defaultValue={contact.firstName}
-		/>
+		<div class="input-group ">
+			<div class="input-group-prepend">
+				<div class="input-group-text">
+					<FontAwesomeIcon icon={faUser} />
+				</div>
+			</div>
+			<input
+				className="form-control"
+				type="text"
+				ref={firstName}
+				defaultValue={contact.firstName}
+			/>
+		</div>
 	) : (
 		contact.firstName
 	);
 	let lastNameEdit = editable ? (
-		<input
-			className="form-control"
-			type="text"
-			ref={lastName}
-			defaultValue={contact.lastName}
-		/>
+		<div class="input-group ">
+			<div class="input-group-prepend">
+				<div class="input-group-text">
+					<FontAwesomeIcon icon={faUser} />
+				</div>
+			</div>
+			<input
+				className="form-control"
+				type="text"
+				ref={lastName}
+				defaultValue={contact.lastName}
+			/>
+		</div>
 	) : (
 		contact.lastName
 	);
 
 	let emailEdit = editable ? (
-		<input
-			className="form-control"
-			type="text"
-			ref={email}
-			defaultValue={contact.email}
-		/>
+		<div class="input-group ">
+			<div class="input-group-prepend">
+				<div class="input-group-text">
+					<FontAwesomeIcon icon={faAt} />
+				</div>
+			</div>
+			<input
+				className="form-control"
+				type="text"
+				ref={email}
+				defaultValue={contact.email}
+			/>
+		</div>
 	) : (
 		contact.email
 	);
 
 	let phoneEdit = editable ? (
-		<input
-			className="form-control"
-			type="text"
-			ref={phone}
-			defaultValue={contact.phone}
-		/>
+		<div class="input-group ">
+			<div class="input-group-prepend">
+				<div class="input-group-text">
+					<FontAwesomeIcon icon={faPhone} />
+				</div>
+			</div>
+			<input
+				className="form-control"
+				type="text"
+				ref={phone}
+				defaultValue={contact.phone}
+			/>
+		</div>
 	) : (
 		contact.phone
 	);
@@ -80,8 +117,8 @@ const Contact = ({ contact, handleUpdate, handleDelete }) => {
 		<>
 			<div
 				className={`card text-white ${
-					editable ? "bg-info" : "bg-dark"
-				} mb-3 mr-1 animate__animated animate__fadeIn`}
+					editable ? "card-edit" : "bg-dark"
+				} mb-3 mr-1 border-0 animate__animated animate__fadeIn`}
 				style={{ width: "18rem" }}>
 				<div className="card-header">
 					{editable ? "Edit Contact" : `#${contact.id}`}
@@ -93,9 +130,15 @@ const Contact = ({ contact, handleUpdate, handleDelete }) => {
 					<p className="card-text">{phoneEdit}</p>
 					<div>
 						<button
-							className="btn btn-warning mr-2"
+							className={`btn ${
+								editable ? "btn-primary" : "button-edit"
+							} mr-2`}
 							onClick={() => handleEdit()}>
-							{!editable ? "Edit" : "Submit"}
+							<FontAwesomeIcon
+								className="mr-1"
+								icon={faUserEdit}
+							/>
+							{editable ? "Submit" : "Edit"}
 						</button>
 
 						<button
@@ -105,6 +148,10 @@ const Contact = ({ contact, handleUpdate, handleDelete }) => {
 									? () => setEditable(!editable)
 									: () => handleDelete(contact.id)
 							}>
+								<FontAwesomeIcon
+									className="mr-1"
+									icon={editable ? faTimesCircle : faTrash }
+								/>
 							{editable ? "Cancel" : "Delete"}
 						</button>
 					</div>
