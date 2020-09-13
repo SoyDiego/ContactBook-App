@@ -14,23 +14,23 @@
 
 ## API Endpoints
 
-| Name        | Description      | Methods              |
-|-------------|------------------|----------------------|
-| `/api/v1/contacts`     | Add and Get contacts  | `GET` `POST`         |
+| Name                   | Description              | Methods        |
+|------------------------|--------------------------|----------------|
+| `/api/v1/contacts`     | Add and Get contacts     | `GET` `POST`   |
 | `/api/v1/contacts/:id` | Edit and Delete contacts | `PUT` `DELETE` |  
 
 ## Schemas
 
 ### Contacts
 
-| Name       | Type     | 
-|------------|----------|
-| `firstName`     | `string` |
-| `lastName`   | `string` |
-| `email`    | `string` |
-| `phone` | `string` |
-| `created_at`      | `datetime` |
-| `updated_at`     | `datetime` |
+| Name            | Type       | 
+|-----------------|------------|
+| `firstName`     | `string`   |
+| `lastName`      | `string`   |
+| `email`         | `string`   |
+| `phone`         | `string`   |
+| `created_at`    | `datetime` |
+| `updated_at`    | `datetime` |
 
 
 ## Installation
