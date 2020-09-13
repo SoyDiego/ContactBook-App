@@ -3,6 +3,7 @@ import NewContact from "./NewContact";
 import { showError, showMessage } from "../helpers/helpers";
 import Swal from "sweetalert2";
 import ContactList from "./ContactList";
+import "animate.css";
 
 const Main = () => {
 	const [contacts, setContacts] = useState(null);
@@ -15,16 +16,13 @@ const Main = () => {
 			contact: { firstName, lastName, email, phone },
 		});
 		try {
-			const api = await fetch(
-				"https://contactbook-app.herokuapp.com/api/v1/contacts.json",
-				{
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json",
-					},
-					body: newContact,
-				}
-			);
+			const api = await fetch("api/v1/contacts.json", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: newContact,
+			});
 			const data = await api.json();
 
 			if (data.ok) {
@@ -61,15 +59,12 @@ const Main = () => {
 		});
 		if (result.isConfirmed) {
 			try {
-				await fetch(
-					`https://contactbook-app.herokuapp.com/api/v1/contacts/${id}`,
-					{
-						method: "DELETE",
-						headers: {
-							"Content-Type": "application/json",
-						},
-					}
-				);
+				await fetch(`api/v1/contacts/${id}`, {
+					method: "DELETE",
+					headers: {
+						"Content-Type": "application/json",
+					},
+				});
 				const filteredContacts = contacts.filter(
 					(contact) => contact.id !== id
 				);
@@ -85,16 +80,13 @@ const Main = () => {
 
 	const handleUpdate = async (contact) => {
 		try {
-			const api = await fetch(
-				`https://contactbook-app.herokuapp.com/api/v1/contacts/${contact.id}`,
-				{
-					method: "PUT",
-					headers: {
-						"Content-Type": "application/json",
-					},
-					body: JSON.stringify({ contact: contact }),
-				}
-			);
+			const api = await fetch(`api/v1/contacts/${contact.id}`, {
+				method: "PUT",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ contact: contact }),
+			});
 			let newContacts = contacts.map((iterateContact) =>
 				iterateContact.id === contact.id ? contact : iterateContact
 			);
@@ -125,14 +117,16 @@ const Main = () => {
 	};
 
 	return (
-		<div className="container-fluid mt-5">
+		<div className="container-fluid my-auto">
 			<div className="row justify-content-center">
-				<div className="col-md-4 d-flex flex-column align-items-center justify-content-center text-center">
-					<h2>Add Contact</h2>
-					<NewContact handleSubmit={handleSubmit} />
+				<div className="col-md-3 p-0 d-flex flex-column text-center animate__animated animate__fadeInLeft">
+					<div className="sticky-top centerLeftMenu bg-dark">
+						<h2 className="text-white">Add Contact</h2>
+						<NewContact handleSubmit={handleSubmit} />
+					</div>
 				</div>
-				<div className="col-md-8 d-flex flex-column text-center">
-					<h2>ContactBook-App</h2>
+				<div className="col-md-9 d-flex flex-column text-center my-auto animate__animated animate__fadeIn">
+					<h2 className="my-3">ContactBook-App</h2>
 					<ContactList
 						contacts={contacts}
 						setContacts={setContacts}

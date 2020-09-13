@@ -1,12 +1,7 @@
 import React, { useEffect } from "react";
 import Contact from "./Contact";
 
-const ContactList = ({
-	contacts,
-	setContacts,
-	handleUpdate,
-	handleDelete,
-}) => {
+const ContactList = ({ contacts, setContacts, handleUpdate, handleDelete }) => {
 	useEffect(() => {
 		try {
 			(async () => {
@@ -32,9 +27,12 @@ const ContactList = ({
 					/>
 				))
 			) : (
-				<p>
-					ContactBook is empty 😔. <strong>Add a new contact</strong>
-				</p>
+				<div className="d-flex justify-content-center align-items-center">
+					<p className="animate__animated animate__heartBeat">
+						ContactBook is empty 😔.{" "}
+						<strong>Add a new contact</strong>
+					</p>
+				</div>
 			)}
 		</div>
 	);

@@ -81,7 +81,7 @@ const Contact = ({ contact, handleUpdate, handleDelete }) => {
 			<div
 				className={`card text-white ${
 					editable ? "bg-info" : "bg-dark"
-				} mb-3 mr-1`}
+				} mb-3 mr-1 animate__animated animate__fadeIn`}
 				style={{ width: "18rem" }}>
 				<div className="card-header">
 					{editable ? "Edit Contact" : `#${contact.id}`}
