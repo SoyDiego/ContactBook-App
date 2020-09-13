@@ -5,7 +5,6 @@ import ContactList from "./ContactList";
 import { showError, showMessage } from "../helpers/helpers";
 
 import Swal from "sweetalert2";
-import "animate.css";
 
 const Main = () => {
 	const [contacts, setContacts] = useState(null);

@@ -11,10 +11,11 @@
  * It is generally better to create a new file per style scope.
  *
  */
- 
+
 @import "bootswatch/dist/darkly/variables";
 @import "bootstrap";
 @import "bootswatch/dist/darkly/bootswatch";
+@import "./animate.min.scss";
 
 .centerLeftMenu {
     height: 100vh;
