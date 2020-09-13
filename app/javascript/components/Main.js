@@ -6,7 +6,6 @@ import { showError, showMessage } from "../helpers/helpers";
 
 import Swal from "sweetalert2";
 import "animate.css";
-import "bootswatch/dist/darkly/bootstrap.min.css"; 
 
 const Main = () => {
 	const [contacts, setContacts] = useState(null);
