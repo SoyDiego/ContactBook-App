@@ -1,24 +1,20 @@
-# README
+# Fullstack Technical Test - ContactBook-App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Specifications
 
-Things you may want to cover:
+- We want a React + Ruby on Rails application that allows you to create, read, update and delete a list of contacts.  
+- Each contact will have: First name, Last name, Email, and phone number. 
+- All the fields are mandatory and there can’t be two contacts with the same email.  
+- The contacts will be persisted in the database.
 
-* Ruby version
+## Technologies
 
-* System dependencies
+- React JS (Frontend)
+- Ruby on Rails (Backend)
 
-* Configuration
+## DEMO
 
-* Database creation
+https://contactbook-app.herokuapp.com/
 
-* Database initialization
+![Screenshot](https://i.imgur.com/NP4EfRX.png)
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...

@@ -120,8 +120,10 @@ const Contact = ({ contact, handleUpdate, handleDelete }) => {
 					editable ? "card-edit" : "bg-dark"
 				} mb-3 mr-1 border-0 animate__animated animate__fadeIn`}
 				style={{ width: "18rem" }}>
-				<div className="card-header">
-					{editable ? "Edit Contact" : `#${contact.id}`}
+				<div className="card-header text-white">
+					{editable
+						? `Editing Contact #${contact.id}`
+						: `#${contact.id}`}
 				</div>
 				<div className="card-body d-flex flex-column justify-content-center">
 					<p className="card-title">{firstNameEdit}</p>
@@ -148,10 +150,10 @@ const Contact = ({ contact, handleUpdate, handleDelete }) => {
 									? () => setEditable(!editable)
 									: () => handleDelete(contact.id)
 							}>
-								<FontAwesomeIcon
-									className="mr-1"
-									icon={editable ? faTimesCircle : faTrash }
-								/>
+							<FontAwesomeIcon
+								className="mr-1"
+								icon={editable ? faTimesCircle : faTrash}
+							/>
 							{editable ? "Cancel" : "Delete"}
 						</button>
 					</div>
