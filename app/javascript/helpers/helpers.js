@@ -25,3 +25,36 @@ export const showError = () =>
 		text: "Something went wrong...",
 		icon: "error",
 	});
+
+export const fetchURL = (url, data = null, method = "GET") => {
+	switch (method) {
+		case "GET":
+			return fetch(url);
+		case "POST":
+			return fetch(url, {
+				method,
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(data),
+			});
+
+		case "PUT":
+			return fetch(url, {
+				method: "PUT",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(data),
+			});
+		case "DELETE":
+			return fetch(url, {
+				method: "DELETE",
+				headers: {
+					"Content-Type": "application/json",
+				},
+			});
+		default:
+			break;
+	}
+};

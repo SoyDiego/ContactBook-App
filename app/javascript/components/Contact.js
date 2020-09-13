@@ -18,7 +18,7 @@ const Contact = ({ contact, handleUpdate, handleDelete }) => {
 	const [editable, setEditable] = useState(false);
 
 	let firstNameEdit = editable ? (
-		<div className="input-group ">
+		<div className="input-group mb-2">
 			<div className="input-group-prepend">
 				<div className="input-group-text">
 					<FontAwesomeIcon icon={faUser} />
@@ -35,7 +35,7 @@ const Contact = ({ contact, handleUpdate, handleDelete }) => {
 		contact.firstName
 	);
 	let lastNameEdit = editable ? (
-		<div className="input-group ">
+		<div className="input-group mb-2">
 			<div className="input-group-prepend">
 				<div className="input-group-text">
 					<FontAwesomeIcon icon={faUser} />
@@ -53,7 +53,7 @@ const Contact = ({ contact, handleUpdate, handleDelete }) => {
 	);
 
 	let emailEdit = editable ? (
-		<div className="input-group ">
+		<div className="input-group mb-2">
 			<div className="input-group-prepend">
 				<div className="input-group-text">
 					<FontAwesomeIcon icon={faAt} />
@@ -71,7 +71,7 @@ const Contact = ({ contact, handleUpdate, handleDelete }) => {
 	);
 
 	let phoneEdit = editable ? (
-		<div className="input-group ">
+		<div className="input-group mb-2">
 			<div className="input-group-prepend">
 				<div className="input-group-text">
 					<FontAwesomeIcon icon={faPhone} />
@@ -126,10 +126,21 @@ const Contact = ({ contact, handleUpdate, handleDelete }) => {
 						: `#${contact.id}`}
 				</div>
 				<div className="card-body d-flex flex-column justify-content-center">
-					<p className="card-title">{firstNameEdit}</p>
-					<p className="card-title">{lastNameEdit}</p>
-					<p className="card-title">{emailEdit}</p>
-					<p className="card-text">{phoneEdit}</p>
+					{editable ? (
+						<div className="animate__animated animate__fadeIn">
+							{firstNameEdit}
+							{lastNameEdit}
+							{emailEdit}
+							{phoneEdit}
+						</div>
+					) : (
+						<>
+							<p className="card-title animate__animated animate__fadeIn">{firstNameEdit}</p>
+							<p className="card-title animate__animated animate__fadeIn">{lastNameEdit}</p>
+							<p className="card-title animate__animated animate__fadeIn">{emailEdit}</p>
+							<p className="card-title animate__animated animate__fadeIn">{phoneEdit}</p>
+						</>
+					)}
 					<div>
 						<button
 							className={`btn ${

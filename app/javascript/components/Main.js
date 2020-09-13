@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import NewContact from "./NewContact";
 import ContactList from "./ContactList";
-import { showError, showMessage } from "../helpers/helpers";
+import { showError, showMessage, fetchURL } from "../helpers/helpers";
 
 import Swal from "sweetalert2";
 
@@ -13,19 +13,14 @@ const Main = () => {
 		e.preventDefault();
 		const resetForm = e.target;
 
-		const newContact = JSON.stringify({
+		const newContact = {
 			contact: { firstName, lastName, email, phone },
-		});
+		};
 		try {
-			const api = await fetch(
+			const api = await fetchURL(
 				"https://contactbook-app.herokuapp.com/api/v1/contacts",
-				{
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json",
-					},
-					body: newContact,
-				}
+				newContact,
+				"POST"
 			);
 			const data = await api.json();
 
@@ -63,14 +58,10 @@ const Main = () => {
 		});
 		if (result.isConfirmed) {
 			try {
-				await fetch(
+				await fetchURL(
 					`https://contactbook-app.herokuapp.com/api/v1/contacts/${id}`,
-					{
-						method: "DELETE",
-						headers: {
-							"Content-Type": "application/json",
-						},
-					}
+					null,
+					"DELETE"
 				);
 				const filteredContacts = contacts.filter(
 					(contact) => contact.id !== id
@@ -87,15 +78,10 @@ const Main = () => {
 
 	const handleUpdate = async (contact) => {
 		try {
-			const api = await fetch(
+			const api = await fetchURL(
 				`https://contactbook-app.herokuapp.com/api/v1/contacts/${contact.id}`,
-				{
-					method: "PUT",
-					headers: {
-						"Content-Type": "application/json",
-					},
-					body: JSON.stringify({ contact: contact }),
-				}
+				{ contact },
+				"PUT"
 			);
 			let newContacts = contacts.map((iterateContact) =>
 				iterateContact.id === contact.id ? contact : iterateContact

@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import Contact from "./Contact";
+import { fetchURL } from "../helpers/helpers";
 
 const ContactList = ({ contacts, setContacts, handleUpdate, handleDelete }) => {
 	useEffect(() => {
 		try {
 			(async () => {
-				const api = await fetch(
+				const api = await fetchURL(
 					"https://contactbook-app.herokuapp.com/api/v1/contacts"
 				);
 				const data = await api.json();
@@ -30,8 +31,9 @@ const ContactList = ({ contacts, setContacts, handleUpdate, handleDelete }) => {
 				))
 			) : (
 				<div className="d-flex justify-content-center align-items-center">
-					<p className="animate__animated animate__heartBeat">
-						ContactBook is empty 😔.{" "}
+					<p className="animate__animated animate__pulse animate__infinite infinite">
+						ContactBook is empty 😔.
+						<br />
 						<strong>Add a new contact</strong>
 					</p>
 				</div>
