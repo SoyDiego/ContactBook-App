@@ -12,7 +12,27 @@
 - React JS (Frontend)
 - Ruby on Rails (Backend)
 
-## DEMO
+## Installation
+
+```sh
+yarn install
+```
+
+Then replace paths `https://contactbook-app.herokuapp.com` to `http://localhost:3000` on the next files:
+
+```
+app/javascript/components/Main.js
+app/javascript/components/ContactList.js
+```
+
+## Run
+```
+rails s
+```
+
+Finally visit http://localhost:3000. :)
+
+## Demo
 
 https://contactbook-app.herokuapp.com/
 
