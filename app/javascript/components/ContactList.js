@@ -5,7 +5,9 @@ const ContactList = ({ contacts, setContacts, handleUpdate, handleDelete }) => {
 	useEffect(() => {
 		try {
 			(async () => {
-				const api = await fetch("/api/v1/contacts.json");
+				const api = await fetch(
+					"https://contactbook-app.herokuapp.com/api/v1/contacts.json"
+				);
 				const data = await api.json();
 
 				setContacts(data);

@@ -18,9 +18,9 @@ const Contact = ({ contact, handleUpdate, handleDelete }) => {
 	const [editable, setEditable] = useState(false);
 
 	let firstNameEdit = editable ? (
-		<div class="input-group ">
-			<div class="input-group-prepend">
-				<div class="input-group-text">
+		<div className="input-group ">
+			<div className="input-group-prepend">
+				<div className="input-group-text">
 					<FontAwesomeIcon icon={faUser} />
 				</div>
 			</div>
@@ -35,9 +35,9 @@ const Contact = ({ contact, handleUpdate, handleDelete }) => {
 		contact.firstName
 	);
 	let lastNameEdit = editable ? (
-		<div class="input-group ">
-			<div class="input-group-prepend">
-				<div class="input-group-text">
+		<div className="input-group ">
+			<div className="input-group-prepend">
+				<div className="input-group-text">
 					<FontAwesomeIcon icon={faUser} />
 				</div>
 			</div>
@@ -53,9 +53,9 @@ const Contact = ({ contact, handleUpdate, handleDelete }) => {
 	);
 
 	let emailEdit = editable ? (
-		<div class="input-group ">
-			<div class="input-group-prepend">
-				<div class="input-group-text">
+		<div className="input-group ">
+			<div className="input-group-prepend">
+				<div className="input-group-text">
 					<FontAwesomeIcon icon={faAt} />
 				</div>
 			</div>
@@ -71,9 +71,9 @@ const Contact = ({ contact, handleUpdate, handleDelete }) => {
 	);
 
 	let phoneEdit = editable ? (
-		<div class="input-group ">
-			<div class="input-group-prepend">
-				<div class="input-group-text">
+		<div className="input-group ">
+			<div className="input-group-prepend">
+				<div className="input-group-text">
 					<FontAwesomeIcon icon={faPhone} />
 				</div>
 			</div>

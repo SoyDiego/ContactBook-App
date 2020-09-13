@@ -19,13 +19,16 @@ const Main = () => {
 			contact: { firstName, lastName, email, phone },
 		});
 		try {
-			const api = await fetch("api/v1/contacts.json", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: newContact,
-			});
+			const api = await fetch(
+				"https://contactbook-app.herokuapp.com/api/v1/contacts.json",
+				{
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: newContact,
+				}
+			);
 			const data = await api.json();
 
 			if (data.ok) {
@@ -62,12 +65,15 @@ const Main = () => {
 		});
 		if (result.isConfirmed) {
 			try {
-				await fetch(`api/v1/contacts/${id}`, {
-					method: "DELETE",
-					headers: {
-						"Content-Type": "application/json",
-					},
-				});
+				await fetch(
+					`https://contactbook-app.herokuapp.com/api/v1/contacts/${id}`,
+					{
+						method: "DELETE",
+						headers: {
+							"Content-Type": "application/json",
+						},
+					}
+				);
 				const filteredContacts = contacts.filter(
 					(contact) => contact.id !== id
 				);
@@ -83,13 +89,16 @@ const Main = () => {
 
 	const handleUpdate = async (contact) => {
 		try {
-			const api = await fetch(`api/v1/contacts/${contact.id}`, {
-				method: "PUT",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({ contact: contact }),
-			});
+			const api = await fetch(
+				`https://contactbook-app.herokuapp.com/api/v1/contacts/${contact.id}`,
+				{
+					method: "PUT",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({ contact: contact }),
+				}
+			);
 			let newContacts = contacts.map((iterateContact) =>
 				iterateContact.id === contact.id ? contact : iterateContact
 			);
