@@ -11,30 +11,3 @@
  * It is generally better to create a new file per style scope.
  *
  */
-
-@import "bootswatch/dist/darkly/variables";
-@import "bootstrap";
-@import "bootswatch/dist/darkly/bootswatch";
-@import "./animate.min.scss";
-
-.centerLeftMenu {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.card-edit,
-.button-edit {
-    color: #212529 !important;
-    background-color: #ffc107 !important;
-    border-color: #ffc107 !important;
-}
-
-.button-edit:hover {
-    color: #212529 !important;
-    background-color: #e0a800 !important;
-    border-color: #d39e00 !important;
-
-}

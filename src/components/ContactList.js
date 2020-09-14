@@ -7,7 +7,7 @@ const ContactList = ({ contacts, setContacts, handleUpdate, handleDelete }) => {
 		try {
 			(async () => {
 				const api = await fetchURL(
-					"https://contactbook-app.herokuapp.com/api/v1/contacts"
+					"https://contactbook-app-v2.herokuapp.com/api/v1/contacts"
 				);
 				const data = await api.json();
 
@@ -16,7 +16,7 @@ const ContactList = ({ contacts, setContacts, handleUpdate, handleDelete }) => {
 		} catch (error) {
 			console.log(error);
 		}
-	}, []);
+	}, [setContacts]);
 
 	return (
 		<div className="d-flex flex-wrap justify-content-center text-center">
@@ -32,7 +32,7 @@ const ContactList = ({ contacts, setContacts, handleUpdate, handleDelete }) => {
 			) : (
 				<div className="d-flex justify-content-center align-items-center">
 					<p className="animate__animated animate__pulse animate__infinite infinite">
-						ContactBook is empty 😔.
+						ContactBook is empty <span role="img" aria-label="emoticon">😔</span>.
 						<br />
 						<strong>Add a new contact</strong>
 					</p>
