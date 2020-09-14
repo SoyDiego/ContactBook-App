@@ -1,6 +1,6 @@
 # Fullstack Technical Test - ContactBook-App-v2
 
-Note: This version is a refactor of **ContactBook-App** separating frontend and backend.
+Note: This version is a refactor of [**ContactBook-App v.1.0**](https://github.com/SoyDiego/ContactBook-App/tree/v1.0) separating frontend and backend.
 
 ## Specifications
 
