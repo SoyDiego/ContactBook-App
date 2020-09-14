@@ -69,6 +69,6 @@ Finally visit http://localhost:3000. :)
 
 ## Demo
 
-https://contactbook-app-v2.herokuapp.com/
+https://contactbook-app-v2.netlify.app/
 
 ![Screenshot](https://i.imgur.com/NP4EfRX.png)
