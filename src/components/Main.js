@@ -18,7 +18,7 @@ const Main = () => {
 		};
 		try {
 			const api = await fetchURL(
-				"https://contactbook-app.herokuapp.com/api/v1/contacts",
+				"https://contactbook-app-v2.herokuapp.com/api/v1/contacts",
 				newContact,
 				"POST"
 			);
@@ -59,7 +59,7 @@ const Main = () => {
 		if (result.isConfirmed) {
 			try {
 				await fetchURL(
-					`https://contactbook-app.herokuapp.com/api/v1/contacts/${id}`,
+					`https://contactbook-app-v2.herokuapp.com/api/v1/contacts/${id}`,
 					null,
 					"DELETE"
 				);
@@ -79,7 +79,7 @@ const Main = () => {
 	const handleUpdate = async (contact) => {
 		try {
 			const api = await fetchURL(
-				`https://contactbook-app.herokuapp.com/api/v1/contacts/${contact.id}`,
+				`https://contactbook-app-v2.herokuapp.com/api/v1/contacts/${contact.id}`,
 				{ contact },
 				"PUT"
 			);
