@@ -1,22 +1,33 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Contact from "./Contact";
-import { fetchURL } from "../helpers/helpers";
+import { fetchURL, showError } from "../helpers/helpers";
+import { Loading } from "./Loading";
 
 const ContactList = ({ contacts, setContacts, handleUpdate, handleDelete }) => {
+	const [isLoading, setIsLoading] = useState(true);
 	useEffect(() => {
 		try {
+			setIsLoading(true);
 			(async () => {
 				const api = await fetchURL(
-					"https://contactbook-app-v2.herokuapp.com/api/v1/contacts"
+					`${process.env.REACT_APP_API_URL}/api/v1/contacts`
 				);
 				const data = await api.json();
 
 				setContacts(data);
+				setIsLoading(false)
 			})();
 		} catch (error) {
+			showError();
+			setIsLoading(false);
 			console.log(error);
 		}
 	}, [setContacts]);
+	
+
+	if (isLoading) {
+		return <Loading />;
+	}
 
 	return (
 		<div className="d-flex flex-wrap justify-content-center text-center">
@@ -32,7 +43,11 @@ const ContactList = ({ contacts, setContacts, handleUpdate, handleDelete }) => {
 			) : (
 				<div className="d-flex justify-content-center align-items-center">
 					<p className="animate__animated animate__pulse animate__infinite infinite">
-						ContactBook is empty <span role="img" aria-label="emoticon">😔</span>.
+						ContactBook is empty
+						<span role="img" aria-label="emoticon">
+							😔
+						</span>
+						.
 						<br />
 						<strong>Add a new contact</strong>
 					</p>
