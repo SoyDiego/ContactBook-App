@@ -15,14 +15,15 @@ const ContactList = ({ contacts, setContacts, handleUpdate, handleDelete }) => {
 				const data = await api.json();
 
 				setContacts(data);
+				setIsLoading(false)
 			})();
 		} catch (error) {
 			showError();
-			console.log(error);
-		} finally {
 			setIsLoading(false);
+			console.log(error);
 		}
 	}, [setContacts]);
+	
 
 	if (isLoading) {
 		return <Loading />;
@@ -42,7 +43,7 @@ const ContactList = ({ contacts, setContacts, handleUpdate, handleDelete }) => {
 			) : (
 				<div className="d-flex justify-content-center align-items-center">
 					<p className="animate__animated animate__pulse animate__infinite infinite">
-						ContactBook is empty{" "}
+						ContactBook is empty
 						<span role="img" aria-label="emoticon">
 							😔
 						</span>
