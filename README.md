@@ -44,12 +44,17 @@ Note: This version is a refactor of [**ContactBook-App v.1.0**](https://github.c
 yarn install
 ```
 
-Then replace paths `https://contactbook-app-v2.herokuapp.com` to
-`http://localhost:4000` on the next files:
+Then replace paths `process.env.REACT_APP_API_URL` to `http://127.0.0.1:4000` on the next files:
 
 ```
 src/components/Main.js
 src/components/ContactList.js
+```
+
+Or create a file `.env.development` in the **root folder** with the next line:
+
+```
+REACT_APP_API_URL=http://127.0.0.1:4000
 ```
 
 ### Backend
